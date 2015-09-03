@@ -31,7 +31,10 @@ App = React.createClass({
 
 	renderTasks() {
 		return this.data.tasks.map((task) => {
-			return <Task key={task._id} task={task} />
+			const currentUserId = this.data.currentUser && this.data.currentUser._id;
+			const showPrivateButton = task.owner === currentUserId;
+
+			return <Task key={task._id} task={task} showPrivateButton={showPrivateButton} />
 		});
 	},
 
@@ -41,12 +44,13 @@ App = React.createClass({
 		//Find the text field via the React red
 		var text = React.findDOMNode(this.refs.textInput).value.trim();
 
-		Tasks.insert({
+		Meteor.call("addTask", text);
+		/*Tasks.insert({
 			text: text,
 			createdAt: new Date(),
 			owner: Meteor.userId(),
 			username: Meteor.user().username
-		});
+		});*/
 
 		//Clear form
 		React.findDOMNode(this.refs.textInput).value = "";
