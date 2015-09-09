@@ -15,7 +15,12 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.publish("tasks", function () {
-    return Tasks.find();
+    return Tasks.find({
+      $or: [
+        {private: {$ne: true} },
+        {owner: this.userId}
+      ]
+    });
   });
 }
 
@@ -35,6 +40,12 @@ Meteor.methods({
   },
 
   removeTask(taskId) {
+    const task = Tasks.findOne(taskId());
+
+    if (task.private && task.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
     Tasks.remove(taskId);
   },
 
