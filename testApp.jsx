@@ -1,4 +1,5 @@
 Tasks = new Mongo.Collection("tasks");
+Comments = new Mongo.Collection("comments");
 
 if (Meteor.isClient) {
   Accounts.ui.config({
@@ -6,10 +7,12 @@ if (Meteor.isClient) {
   });
 
   Meteor.subscribe("tasks");
+  //Meteor.subscribe("commentsForStory");
 
   Meteor.startup(function () {
     //Use Meteor.startup to render the component after the page is ready
     React.render(<App />, document.getElementById("render-target"));
+    React.render(<CommentBox />, document.getElementById("render-commentBox"));
   });
 }
 
