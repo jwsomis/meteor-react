@@ -81,7 +81,7 @@ App = React.createClass({
 							<input type="text" ref="textInput" placeholder="Type to add new tasks" />
 						</form> : ''
 					}
-
+					//<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js'></script>
 				</header>
 
 				<hr />
@@ -93,6 +93,7 @@ App = React.createClass({
 
 				<hr />
 			</div>
+
 		);
 	}
 });

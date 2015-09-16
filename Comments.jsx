@@ -1,3 +1,7 @@
+data = [
+	{author: "Pete Hunt", text: "This is a comment"}
+];
+
 CommentBox = React.createClass({
 	mixins: [ReactMeteorData],
 	getMeteorData: function() {
@@ -9,17 +13,23 @@ CommentBox = React.createClass({
 		Meteor.call("addComment", this.props.story, comment, function (err) {
 			if (err) {
 				consle.error("failed to add comment", err);
-				//but if the call fails, the comment will automatically disappear
+				//but if the call fails, the comment will automatically disappea
 			}
 		});
+	},
+	setScript: function() {
+		return {__html: "<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js'></script>"};
 	},
 
 	render: function() {
 		return (
-			<div className="CommentBox">
-				<h1>Comments</h1>
-				<CommentList data={this.data.comments} />
-				<CommentForm onCommentSubmit={this.handleCommentSubmit} />
+			<div className="container">
+				//<div className="setScript" dangerouslySetInnerHTML={this.setScript()} />
+				<div className="CommentBox">
+					<h1>Comments</h1>
+					<CommentList data={this.props.data} />
+					<CommentForm onCommentSubmit={this.handleCommentSubmit} />
+				</div>
 			</div>
 		)
 	}
@@ -54,7 +64,7 @@ Comment = React.createClass({
 				<h3 className="commentAuthor">
 					{this.props.author}
 				</h3>
-				{this.props.children}
+				{marked(this.props.children.toString())}
 			</div>
 		);
 	}
