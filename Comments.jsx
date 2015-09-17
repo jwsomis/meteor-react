@@ -1,6 +1,11 @@
 data = [
+<<<<<<< HEAD
 	{author: "Pete Hunt", text: "This is "}
 ]
+=======
+	{author: "Pete Hunt", text: "This is a comment"}
+];
+>>>>>>> c2bc1b2507fc3114fca7cc60786fbe1b3686dcb5
 
 CommentBox = React.createClass({
 	mixins: [ReactMeteorData],
@@ -13,7 +18,7 @@ CommentBox = React.createClass({
 		Meteor.call("addComment", this.props.story, comment, function (err) {
 			if (err) {
 				consle.error("failed to add comment", err);
-				//but if the call fails, the comment will automatically disappear
+				//but if the call fails, the comment will automatically disappea
 			}
 		});
 	},
