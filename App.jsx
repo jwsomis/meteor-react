@@ -64,35 +64,39 @@ App = React.createClass({
 
 	render() {
 		return (
-			<div className="container">
+			<div>
 				<header>
-					<label className="hide-completed">
-						<input type="checkbox" readOnly={true} checked={this.state.hideCompleted} onClick={this.toggleHideCompleted} />
-						Hide Completed Tasks
-					</label>
 
 					<AccountsUIWrapper />
 
-					<h1>Todo List ({this.data.incompleteCount})</h1>
+					
+				</header>	
+				<div className="container">
+					<div className="toDoList">
+						<h3>Todo List ({this.data.incompleteCount})</h3>	
+						<label className="hide-completed">
+							<input type="checkbox" readOnly={true} checked={this.state.hideCompleted} onClick={this.toggleHideCompleted} />
+							Hide Completed Tasks
+						</label>	
 
-						{/*new task from*/}
-					{ this.data.currentUser ?
-						<form className="new-task" onSubmit={this.handleSubmit} >
-							<input type="text" ref="textInput" placeholder="Type to add new tasks" />
-						</form> : ''
-					}
-
-				</header>
-
-				<hr />
-				<div className="task-list">
-					<ul>
-						{this.renderTasks()}
-					</ul>
+								{/*new task from*/}
+							{ this.data.currentUser ?
+								<form className="new-task" onSubmit={this.handleSubmit} >
+									<input type="text" ref="textInput" placeholder="Type to add new tasks" />
+								</form> : ''
+							}
+						{/*<hr />*/}
+						<div className="task-list">
+							<ul>
+								{this.renderTasks()}
+							</ul>
+						</div>
+					</div>
 				</div>
 
-				<hr />
+				{/*<hr />*/}
 			</div>
+
 		);
 	}
 });

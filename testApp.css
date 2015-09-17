@@ -7,6 +7,7 @@ body {
 	background-attachment: fixed;
 
 	position: absolute;
+	/*padding: 0 10%;*/
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -16,6 +17,15 @@ button {
 	padding: 0 2px;
 	margin: 0 2px;
 	line-height: normal;
+}
+
+.toDoList {
+	position: absolute;
+	top:40px;
+	/*width:20%;*/
+	border: 3px groove black;
+	border-radius: 8px;
+	padding:8px;
 }
 
 .checked {
@@ -32,4 +42,12 @@ button {
 	position: absolute;
 	right: 10px;
 	top: 10px;
+}
+
+.login-link-text {
+	font-size: 18px;
+	color: #78c9ff;
+}
+.login-link-text:hover {
+	color: white;
 }
